@@ -463,12 +463,12 @@ namespace dxvk {
     }
 
     if (triggerRtxInjection) {
-      m_parent->EmitCs([](DxvkContext* ctx) {
-        static_cast<RtxContext*>(ctx)->injectRTX();
-      });
+      //m_parent->EmitCs([](DxvkContext* ctx) {
+      //  static_cast<RtxContext*>(ctx)->injectRTX();
+      //});
 
       m_rtxInjectTriggered = true;
-      return true;
+      //return true;
     }
 
     assert(status == RtxGeometryStatus::RayTraced || status == RtxGeometryStatus::Rasterized);
@@ -840,6 +840,9 @@ namespace dxvk {
   }
 
   void D3D9Rtx::EndFrame() {
+    m_parent->EmitCs([](DxvkContext* ctx) {
+      static_cast<RtxContext*>(ctx)->injectRTX();
+    });
     // Inform backend of end-frame
     m_parent->EmitCs([](DxvkContext* ctx) { static_cast<RtxContext*>(ctx)->endFrame(); });
 
