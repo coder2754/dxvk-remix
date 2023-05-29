@@ -449,9 +449,9 @@ namespace dxvk {
     ScopedCpuProfileZone();
 
     // RTX was injected => treat everything else as rasterized 
-    if (m_rtxInjectTriggered) {
-      return true;
-    }
+    //if (m_rtxInjectTriggered) {
+    //  return true;
+    //}
 
     auto [status, triggerRtxInjection] = makeDrawCallType(drawContext);
 
